@@ -3,7 +3,6 @@ runtime: nodejs
 instance_class: F1
 
 entrypoint: 'yarn start'
-dir: './server'
 
 service: yt-together-production
 

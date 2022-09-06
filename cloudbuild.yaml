@@ -6,7 +6,6 @@ steps:
   - id: buildClient
     name: node
     entrypoint: yarn
-    dir: './client'
     args: ['build']
     waitFor:
       - yarnClient
