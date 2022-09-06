@@ -1,16 +1,19 @@
 steps:
   - id: yarnClient
-    name: yarn
+    name: node
+    entrypoint: yarn
     dir: './client'
   - id: buildClient
-    name: yarn
+    name: node
+    entrypoint: yarn
     dir: './client'
     args: ['yarn', 'build']
     waitFor:
       - yarnClient
   - id: yarnServer
+    entrypoint: yarn
     dir: './server'
-    name: yarn
+    name: node
     waitFor: ['-']
   - id: deploytoAppEngine
     name: 'gcr.io/cloud-builders/gcloud'
