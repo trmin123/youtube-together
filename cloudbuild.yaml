@@ -1,0 +1,21 @@
+steps:
+  - id: yarnClient
+    name: yarn
+    dir: './client'
+  - id: buildClient
+    name: yarn
+    dir: './client'
+    args: ['yarn', 'build']
+    waitFor:
+      - yarnClient
+  - id: yarnServer
+    dir: './server'
+    name: yarn
+    waitFor: ['-']
+  - id: deploytoAppEngine
+    name: 'gcr.io/cloud-builders/gcloud'
+    args: ['app', 'deploy', './app.yaml', '--stop-previous-version']
+    timeout: '1200s'
+    waitFor:
+      - yarnServer
+      - buildClient
